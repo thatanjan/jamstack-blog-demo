@@ -1,0 +1,26 @@
+{
+  "name": "jamstack_demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "gray-matter": "^4.0.3",
+    "mdx": "^0.3.1",
+    "mongoose": "^5.12.12",
+    "nanoid": "^3.1.23",
+    "next": "10.2.3",
+    "next-mdx-remote": "^3.0.2",
+    "prism-react-renderer": "^1.2.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "swr": "^0.5.6"
+  }
+}
