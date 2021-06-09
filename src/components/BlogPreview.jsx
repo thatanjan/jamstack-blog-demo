@@ -17,7 +17,7 @@ const BlogPreview = ({
 	banner,
 	description,
 	slug,
-	readingtime,
+	readingTime,
 }) => {
 	const href = `/blog/${slug}`
 
@@ -30,7 +30,7 @@ const BlogPreview = ({
 				title={title}
 				subheader={
 					<>
-						{createdAt}, {data ? data.totalViews : totalViews} views, {readingtime}
+						{createdAt}, {data ? data.totalViews : totalViews} views, {readingTime}
 					</>
 				}
 				href={href}
