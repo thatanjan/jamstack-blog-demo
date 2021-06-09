@@ -44,7 +44,7 @@ components.li = ({ children, ...props }) => (
 	</ListItem>
 )
 
-components.img = ({ src }) => (
+components.Image = ({ src }) => (
 	<Image
 		src='dfdf'
 		loader={() => src}
@@ -53,6 +53,8 @@ components.img = ({ src }) => (
 		layout='responsive'
 	/>
 )
+
+components.img = (props) => <img {...props} style={{ width: '100%' }} />
 
 components.a = (props) => {
 	return (
