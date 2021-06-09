@@ -7,17 +7,9 @@ import BlogPreview from '../BlogPreview'
 const BlogPreviewLayout = ({ allBlogs }) => {
 	return (
 		<Grid container spacing={4}>
-			{allBlogs.map(({ title, slug, banner, description, createdAt }) => (
+			{allBlogs.map((blog) => (
 				<Grid key={nanoid()} item lg={4}>
-					<BlogPreview
-						{...{
-							title,
-							banner,
-							description,
-							createdAt,
-							slug,
-						}}
-					/>
+					<BlogPreview {...blog} />
 				</Grid>
 			))}
 		</Grid>
