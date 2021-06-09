@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 
 import MuiLink from './Links/MuiLink'
+import CodeBlock from './CodeBlock'
 
 const headerElements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 
@@ -20,7 +21,7 @@ const Iframe = ({ videoID, title }) => {
 	)
 }
 
-let components = { Iframe }
+let components = { Iframe, code: CodeBlock }
 
 headerElements.forEach((item) => {
 	components[item] = (props) => <Typography variant={item} {...props} />
@@ -54,7 +55,6 @@ components.img = ({ src }) => (
 )
 
 components.a = (props) => {
-	console.log(props)
 	return (
 		<MuiLink
 			MuiComponent={Typography}
