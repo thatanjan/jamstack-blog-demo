@@ -17,6 +17,7 @@ const schema = new Schema({
 	},
 	content: requiredStringType,
 	totalViews: { type: Number, default: 0 },
+	readingTime: requiredStringType,
 })
 
 export default models.blog || model('blog', schema)
