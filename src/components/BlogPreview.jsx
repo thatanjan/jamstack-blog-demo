@@ -8,14 +8,31 @@ import Typography from '@material-ui/core/Typography'
 
 import MuiLink from './Links/MuiLink'
 
-const BlogPreview = ({ title, createdAt, banner, description, slug }) => {
+import useApiSWR from '../hooks/useApiSWR'
+
+const BlogPreview = ({
+	title,
+	createdAt,
+	totalViews,
+	banner,
+	description,
+	slug,
+	readingtime,
+}) => {
 	const href = `/blog/${slug}`
+
+	const { data } = useApiSWR(`/api/views/${slug}`)
+
 	return (
 		<Card>
 			<MuiLink
 				MuiComponent={CardHeader}
 				title={title}
-				subheader={createdAt}
+				subheader={
+					<>
+						{createdAt}, {data ? data.totalViews : totalViews} views, {readingtime}
+					</>
+				}
 				href={href}
 			/>
 			<MuiLink MuiComponent={CardMedia} href={href}>
