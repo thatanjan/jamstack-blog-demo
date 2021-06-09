@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
+import useSWR from 'swr'
+import axios from 'axios'
 
 import BlogLayout from '../../components/Layouts/BlogLayout'
 
@@ -9,11 +11,38 @@ import BlogModel from '../../mongoose/BlogModel'
 
 import components from '../../components/MdxComponents'
 
-const Blog = ({ blog, serializedBlog }) => {
+const Blog = ({ slug, blog, serializedBlog }) => {
 	const { content: _, ...props } = blog
 
+	const fetcher = async (url) => {
+		const { data } = await axios.get(url)
+		return data
+	}
+
+	const { data, mutate } = useSWR(`/api/views/${slug}`, fetcher)
+
+	useEffect(() => {
+		const cancelTokenSource = axios.CancelToken.source()
+
+		;(async () => {
+			try {
+				await axios.post(`/api/views/${slug}`, {
+					cancelToken: cancelTokenSource.token,
+				})
+
+				mutate()
+			} catch (_) {}
+		})()
+
+		return () => {
+			cancelTokenSource.cancel()
+		}
+	}, [])
+
 	return (
-		<BlogLayout {...props}>
+		<BlogLayout
+			{...{ ...props, totalViews: data ? data.totalViews : props.totalViews }}
+		>
 			<MDXRemote {...serializedBlog} components={components} />
 		</BlogLayout>
 	)
@@ -46,7 +75,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
 
 	const serializedBlog = await serialize(blog.content)
 
-	return { props: { blog, serializedBlog } }
+	return { props: { blog, serializedBlog, slug } }
 }
 
 export default Blog
