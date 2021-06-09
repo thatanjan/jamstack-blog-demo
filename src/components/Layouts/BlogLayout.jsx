@@ -13,7 +13,14 @@ const useStyles = makeStyles({
 	},
 })
 
-const BlogLayout = ({ children, banner, title, createdAt, description }) => {
+const BlogLayout = ({
+	children,
+	banner,
+	title,
+	createdAt,
+	description,
+	totalViews,
+}) => {
 	const { bannerStyle, paddingBottom } = useStyles()
 
 	return (
@@ -40,7 +47,7 @@ const BlogLayout = ({ children, banner, title, createdAt, description }) => {
 						<Typography variant='h6'>Reading time</Typography>
 					</Grid>
 					<Grid item>
-						<Typography variant='h6'>X views</Typography>
+						<Typography variant='h6'>{totalViews} views</Typography>
 					</Grid>
 				</Grid>
 
