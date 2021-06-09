@@ -65,7 +65,10 @@ export const getStaticProps = async () => {
 
 	await Promise.all(updateBlogPromise)
 
-	const allBlogsResult = await BlogModel.find({}, '-content -customID -_id')
+	const allBlogsResult = await BlogModel.find(
+		{},
+		'-content -customID -_id'
+	).sort('-createdAt')
 
 	const allBlogs = allBlogsResult
 		.map((blog) => blog.toObject())
