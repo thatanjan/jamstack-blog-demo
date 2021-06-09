@@ -20,6 +20,7 @@ const BlogLayout = ({
 	createdAt,
 	description,
 	totalViews,
+	readingTime,
 }) => {
 	const { bannerStyle, paddingBottom } = useStyles()
 
@@ -44,7 +45,7 @@ const BlogLayout = ({
 						<Typography variant='h6'>{createdAt}</Typography>
 					</Grid>
 					<Grid item>
-						<Typography variant='h6'>Reading time</Typography>
+						<Typography variant='h6'>{readingTime}</Typography>
 					</Grid>
 					<Grid item>
 						<Typography variant='h6'>{totalViews} views</Typography>
