@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import matter from 'gray-matter'
+import readingTime from 'reading-time'
 
 import path from 'path'
 import fs from 'fs'
@@ -53,7 +54,7 @@ export const getStaticProps = async () => {
 		return BlogModel.updateOne(
 			{ customID: data.customID },
 			{
-				$set: { ...data, content },
+				$set: { ...data, content, readingTime: readingTime(content).text },
 			},
 			{
 				upsert: true,
