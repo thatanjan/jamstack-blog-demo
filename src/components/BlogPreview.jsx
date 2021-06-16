@@ -25,15 +25,17 @@ const BlogPreview = ({
 
 	return (
 		<Card>
-			<MuiLink
-				MuiComponent={CardHeader}
-				title={title}
+			<CardHeader
+				title={
+					<MuiLink MuiComponent={Typography} href={href} variant='h5'>
+						{title}
+					</MuiLink>
+				}
 				subheader={
 					<>
 						{createdAt}, {data ? data.totalViews : totalViews} views, {readingTime}
 					</>
 				}
-				href={href}
 			/>
 			<MuiLink MuiComponent={CardMedia} href={href}>
 				<Image src={banner} height={1080} width={1920} layout='responsive' />
